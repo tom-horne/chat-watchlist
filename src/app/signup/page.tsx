@@ -1,5 +1,5 @@
-import { login } from "./actions";
 import Link from "next/link";
+import { signup } from "./actions";
 
 export default function LoginPage() {
   return (
@@ -13,13 +13,13 @@ export default function LoginPage() {
           <input id="email" name="email" type="email" required />
           <label htmlFor="password">Password:</label>
           <input id="password" name="password" type="password" required />
-          <button className="bg- bg-orange-200 p-2" formAction={login}>
-            Login
+          <button className="bg- bg-orange-200 p-2" formAction={signup}>
+            Sign up
           </button>
         </form>
       </>
-      <Link href="/signup">
-        <p>New around? Click here to signup</p>
+      <Link href="/login">
+        <p>Already registered? Click here</p>
       </Link>
     </main>
   );
