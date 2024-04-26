@@ -8,25 +8,18 @@ export default async function Home() {
   if (error || !data?.user) {
     return (
       <main className="flex items-center">
-        <>
-          <Link href="/login">
-            <button className="bg-red-200 p-4">Login</button>
-          </Link>
-          <Link href="/signup">
-            <button className="bg-blue-200 p-4">Signup</button>
-          </Link>
-        </>
+        <></>
       </main>
     );
   }
   return (
     <main className="flex items-center">
-      <p>Hello {data.user.email}</p>
+      {/* <p>Hello {data.user.email}</p>
       <form>
         <button className="bg-purple-200 p-4" formAction={signout}>
           Signout
         </button>
-      </form>
+      </form> */}
     </main>
   );
 }
