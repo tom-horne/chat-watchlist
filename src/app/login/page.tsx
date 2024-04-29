@@ -17,7 +17,9 @@ export default async function LoginPage() {
         <AuthBox submit={login} title="Login" />
       </>
       <Link href="/signup">
-        <p>New around? Click here to signup</p>
+        <p className="pt-4 hover:text-blue-900 hover:underline">
+          New around? Click here to signup
+        </p>
       </Link>
     </main>
   );
