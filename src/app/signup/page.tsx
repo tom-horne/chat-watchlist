@@ -16,7 +16,9 @@ export default async function SignUpPage() {
         <AuthBox submit={signup} title="Sign up" />
       </>
       <Link href="/login">
-        <p>Already registered? Click here</p>
+        <p className="pt-4 hover:text-blue-900 hover:underline">
+          Already registered? Click here
+        </p>
       </Link>
     </main>
   );
