@@ -2,19 +2,29 @@
 
 import { useForm } from "react-hook-form";
 
+type FormValues = {
+  email: string;
+  password: string;
+};
+
 type AuthBoxProps = {
-  submit: any;
+  submit: (data: FormValues) => void;
   title: string;
 };
 
 const AuthBox: React.FC<AuthBoxProps> = ({ submit, title }) => {
-  const form = useForm();
+  const form = useForm<FormValues>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
+  const onSubmit = (data: FormValues) => {
+    console.log("form submitted", data);
+    submit(data);
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(submit)}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="bg-blue-400 w-72 p-4 rounded flex flex-col justify-between space-y-4"
     >
