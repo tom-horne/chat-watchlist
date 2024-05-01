@@ -51,6 +51,11 @@ const NavBar: React.FC<NavBarProps> = async ({}) => {
                 <button formAction={signout}>Signout</button>
               </form>
             </li>
+            <li>
+              <Link href="/profile">
+                <p>Profile</p>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

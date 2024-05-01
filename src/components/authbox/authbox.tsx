@@ -33,6 +33,7 @@ const AuthBox: React.FC<AuthBoxProps> = ({ submit, title }) => {
         className="rounded p-2"
         id="email"
         type="email"
+        placeholder="email@example.com"
         {...register("email", {
           pattern: {
             value:
@@ -49,6 +50,7 @@ const AuthBox: React.FC<AuthBoxProps> = ({ submit, title }) => {
         className="rounded p-2"
         id="password"
         type="password"
+        placeholder="password"
         required
         {...register("password", {
           minLength: {
@@ -59,10 +61,12 @@ const AuthBox: React.FC<AuthBoxProps> = ({ submit, title }) => {
       />
       <p className="text-red-600">{errors?.password?.message as any}</p>
 
-      <input
+      <button
         className="bg-orange-200 hover:bg-orange-300 rounded p-2"
         type="submit"
-      />
+      >
+        {title}
+      </button>
     </form>
   );
 };
