@@ -12,30 +12,28 @@ type FormData = {
 
 export async function profileData(formData: FormData) {
   const supabase = createClient()
+  const { data } = await supabase.auth.getUser();
+
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
-  const data = {
+  const userData = {
     username: formData.username,
     firstname: formData.firstname,
     lastname: formData.lastname,
 
   }
 
-  console.log('====================================');
-  console.log("DATAATAA", data);
-  console.log('====================================');
-
   const { error } = await supabase
       .from("profiles")
       .update([
         {
-          username: data.username,
-          firstname: data.firstname,
-          lastname: data.lastname,
+          username: userData.username,
+          firstname: userData.firstname,
+          lastname: userData.lastname,
         },
       ])
-      .eq("id", "664f8571-961c-4233-b6db-57acb8895b36")
+      .eq("id", data.user?.id)
       .select();
 
   if (error) {
