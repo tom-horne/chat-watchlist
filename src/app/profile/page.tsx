@@ -1,6 +1,7 @@
 import React from "react";
 import { createClient } from "../../../utils/supabase/server";
 import { redirect } from "next/navigation";
+import MoreDataBox from "@/components/moredatabox/moredatabox";
 
 type ProfileProps = {
   username: string;
@@ -17,17 +18,22 @@ const Profile: React.FC<ProfileProps> = async () => {
   }
 
   const { data: UserInfo } = await supabase
-    .from("UserInfo")
+    .from("profiles")
     .select()
     .eq("id", data.user.id);
-
-  //   if (!UserInfo) {
-  //     <div>No User data</div>;
-  //   }
 
   const Username = UserInfo && UserInfo[0]?.username;
   const Firstname = UserInfo && UserInfo[0]?.firstname;
   const Lastname = UserInfo && UserInfo[0]?.lastname;
+
+  if (!Username) {
+    return (
+      <div className="flex flex-col items-center space-y-4">
+        <h2>Enter more account information below</h2>
+        <MoreDataBox />
+      </div>
+    );
+  }
 
   return (
     <main className="flex flex-col items-center">
@@ -37,30 +43,6 @@ const Profile: React.FC<ProfileProps> = async () => {
         <p>
           {Firstname} {Lastname}
         </p>
-        {/* <form className="flex flex-col gap-3">
-          <label htmlFor="username">Username</label>
-          <input
-            className="border"
-            id="username"
-            type="username"
-            value={Username}
-          />
-          <label htmlFor="firstname">First Name</label>
-          <input
-            className="border"
-            id="firstname"
-            type="firstname"
-            value={Firstname}
-          />
-          <label htmlFor="lastname">Last name</label>
-          <input
-            className="border"
-            id="lastname"
-            type="lastname"
-            value={Lastname}
-          />
-          <button className="bg-blue-600 p-2 rounded">Save Details</button>
-        </form> */}
       </div>
     </main>
   );
