@@ -26,7 +26,7 @@ const AuthBox: React.FC<AuthBoxProps> = ({ submit, title }) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="bg-blue-400 w-72 p-4 rounded flex flex-col justify-between space-y-4"
+      className="bg-blue-400 w-72 p-4 rounded flex flex-col items-center justify-between space-y-4"
     >
       <label htmlFor="email">Email:</label>
       <input
