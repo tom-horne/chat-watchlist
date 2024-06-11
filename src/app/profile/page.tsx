@@ -2,6 +2,7 @@ import React from "react";
 import { createClient } from "../../../utils/supabase/server";
 import { redirect } from "next/navigation";
 import MoreDataBox from "@/components/moredatabox/moredatabox";
+import UploadAvatar from "@/components/uploadavatar/uploadavatar";
 
 type ProfileProps = {
   username: string;
@@ -9,7 +10,7 @@ type ProfileProps = {
   lastname: string;
 };
 
-const Profile: React.FC<ProfileProps> = async () => {
+async function Profile() {
   const supabase = createClient();
   const { data, error } = await supabase.auth.getUser();
 
@@ -17,20 +18,21 @@ const Profile: React.FC<ProfileProps> = async () => {
     redirect("/error");
   }
 
-  const { data: UserInfo } = await supabase
+  const { data: profileData } = await supabase
     .from("profiles")
     .select()
     .eq("id", data.user.id);
 
-  const Username = UserInfo && UserInfo[0]?.username;
-  const Firstname = UserInfo && UserInfo[0]?.firstname;
-  const Lastname = UserInfo && UserInfo[0]?.lastname;
+  const Username = profileData && profileData[0]?.username;
+  const Firstname = profileData && profileData[0]?.firstname;
+  const Lastname = profileData && profileData[0]?.lastname;
 
   if (!Username) {
     return (
       <div className="flex flex-col items-center space-y-4">
         <h2>Enter more account information below</h2>
         <MoreDataBox />
+        <UploadAvatar />
       </div>
     );
   }
@@ -43,9 +45,10 @@ const Profile: React.FC<ProfileProps> = async () => {
         <p>
           {Firstname} {Lastname}
         </p>
+        <UploadAvatar />
       </div>
     </main>
   );
-};
+}
 
 export default Profile;
