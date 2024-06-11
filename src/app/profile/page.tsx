@@ -32,7 +32,7 @@ async function Profile() {
       <div className="flex flex-col items-center space-y-4">
         <h2>Enter more account information below</h2>
         <MoreDataBox />
-        <UploadAvatar />
+        <UploadAvatar user={data} />
       </div>
     );
   }
@@ -45,7 +45,7 @@ async function Profile() {
         <p>
           {Firstname} {Lastname}
         </p>
-        <UploadAvatar />
+        <UploadAvatar user={data} />
       </div>
     </main>
   );
