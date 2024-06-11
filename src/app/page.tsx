@@ -8,18 +8,13 @@ export default async function Home() {
   if (error || !data?.user) {
     return (
       <main className="flex items-center">
-        <></>
+        <p>Not Logged in</p>
       </main>
     );
   }
   return (
     <main className="flex items-center">
-      {/* <p>Hello {data.user.email}</p>
-      <form>
-        <button className="bg-purple-200 p-4" formAction={signout}>
-          Signout
-        </button>
-      </form> */}
+      <p>Logged in</p>
     </main>
   );
 }
